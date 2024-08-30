@@ -1,6 +1,6 @@
 # TL2 - Trabajo práctico 1
 
-## Respuestas punto 2 a
+## Respuestas punto 2-a
 
 **¿Cuál de estas relaciones considera que se realiza por composición y cuál por agregación?**
 
