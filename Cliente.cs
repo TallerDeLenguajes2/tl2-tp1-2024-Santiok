@@ -1,11 +1,11 @@
 namespace Cliente;
 
-public class Cliente
+public class cliente
 {
-    private string Nombre;
-    private string Direccion;
-    private string Telefono;
-    private List<string> DatosReferencia;
+    public string Nombre;
+    public string Direccion;
+    public string Telefono;
+    public List<string> DatosReferencia;
 
     private string []Nombres = {"Santiago","Martin","Alfredo","Mario","Sebastian","Marcela","Paola","Susana"};
     private string []Direcciones = {"Crisostomo 325","San Lorenzo 489","Monteagudo 569","San Juan 698","Simon Bolivar 789","Lavalle 985","Mendoza 110","San Martin 362"};
@@ -23,7 +23,10 @@ public class Cliente
         for (int i = 0; i < 1; i++)
         {
             string aux = DatosRef[random.Next(0,DatosRef.Length)];
-            DatosReferencia.Add(aux);
+            this.DatosReferencia.Add(aux);
         }  
     }
+  
+ 
+
 }
