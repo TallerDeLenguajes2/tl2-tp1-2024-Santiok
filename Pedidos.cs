@@ -1,6 +1,7 @@
-using Cliente;
 namespace Pedidos;
-public class Pedididos
+using Cliente;
+
+public class pedididos
 {
     private int NumeroPedido;
     private string Observacion;
