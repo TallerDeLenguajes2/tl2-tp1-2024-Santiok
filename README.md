@@ -5,7 +5,7 @@
 **¿Cuál de estas relaciones considera que se realiza por composición y cuál por agregación?**
 
 
-1. *Cliente-Pedido* es una relación de composición. Un cliente es parte de un pedido y si se elimina un pedido se elimina también su cliente.
+1. *Cliente-Pedido*  es una relación de composición. Un cliente es parte de un pedido y si se elimina un pedido se elimina también su cliente.
 2. *Pedido-Cadete* es una relación de agregación. Un Pedido tiene un Cadete pero pueden existir Cadetes sin pedidos.
 3. *Cadete-Cadetería* es una relación de composición. Un cadete es parte de una cadetería.
 
