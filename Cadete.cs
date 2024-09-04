@@ -8,4 +8,17 @@ public class cadete
     private string Direccion;
     private string Telefono;
     private List<pedididos> ListadoPedidos;
+
+    //Metodo constructor.
+    cadete CrearCadete(id, nom, dir, tel)
+    {
+        cadete cad;
+
+        this.ID = id;
+        this.Nombre = nom;
+        this.Direccion = dir;
+        this.Telefono = tel;
+
+        return cad;
+    }
 }
