@@ -8,13 +8,9 @@ public class cadeteria
     private List<cadete> listadoCadetes;
 
     //Metodo constructor.
-    cadeteria CrearCadeteria(nom, tel)
+    public cadeteria(string nom, string tel)
     {
-        cadeteria cad;
-
         this.Nombre = nom;
         this.Telefono = tel;
-
-        return cad;
     }
 }
