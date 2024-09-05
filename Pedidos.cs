@@ -1,14 +1,23 @@
 namespace Pedidos;
 using Cliente;
 
-public class pedididos
+public class pedidos
 {
-    private int NumeroPedido;
-    private string Observacion;
-    private cliente infoCliente;
-    private bool Estado;
+    public int NumeroPedido;
+    public string Observacion;
+    public cliente infoCliente;
+    public  Estado estado;
 
-  //Muestro la direccion del cliente.
+    //Metodo constructor.
+    public pedidos(int num, string obs, cliente cli, Estado est)
+    {
+        this.NumeroPedido = num;
+        this.Observacion = obs;
+        this.infoCliente = cli;
+        this.estado = est;
+    }
+
+    //Muestro la direccion del cliente.
     public string VerDireccionCliente(cliente clienteAux)
     {
         return $"Direccion del cliente {infoCliente.Direccion}";

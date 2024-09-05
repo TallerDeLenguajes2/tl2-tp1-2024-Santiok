@@ -12,21 +12,25 @@ public class cliente
     private string []Telefonos = {"3814529658","3815269847","3814789625","3814259879","3814789256","3814269587","381479521","3814526985"};
      private string []DatosRef = {"Casa Celeste","Casa Grande","Porton Negro","Puerta Blanca","Puerta Pequeña","Arbol en la Entrada","Ventana Marron","Ventana Grande"};
     
-    //Metodo constructor para cliente.
-    void CrearCliente()
+
+    //Constructor vacío que inicializa DatosReferencia.
+    public cliente()
+    {
+        //Inicializa la lista al crear una instancia de cliente.
+        DatosReferencia = new List<string>();  
+    }
+
+ 
+    public static cliente CrearCliente()
     {
         Random random = new Random();
-        this.Nombre = Nombres[random.Next(0,Nombres.Length)];
-        this.Direccion = Direcciones[random.Next(0,Direcciones.Length)];
-        this.Telefono = Telefonos[random.Next(0,Telefonos.Length)];
+        cliente nuevoCliente = new cliente();
+        nuevoCliente.Nombre = nuevoCliente.Nombres[random.Next(0, nuevoCliente.Nombres.Length)];
+        nuevoCliente.Direccion = nuevoCliente.Direcciones[random.Next(0, nuevoCliente.Direcciones.Length)];
+        nuevoCliente.Telefono = nuevoCliente.Telefonos[random.Next(0, nuevoCliente.Telefonos.Length)];
 
-        for (int i = 0; i < 1; i++)
-        {
-            string aux = DatosRef[random.Next(0,DatosRef.Length)];
-            this.DatosReferencia.Add(aux);
-        }  
+        nuevoCliente.DatosReferencia.Add(nuevoCliente.DatosRef[random.Next(0, nuevoCliente.DatosRef.Length)]);
+
+        return nuevoCliente;
     }
-  
- 
-
 }
