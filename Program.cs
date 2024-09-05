@@ -239,7 +239,6 @@ void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
         Console.WriteLine("Cadete no encontrado.");
         return;
     }
-
     var cadeteSeleccionado = listaCadetes[indiceCadete];
     cadeteSeleccionado.ListadoPedidos.Add(pedidoSeleccionado);
     Console.WriteLine($"Pedido {pedidoSeleccionado.NumeroPedido} reasignado a {cadeteSeleccionado.Nombre}.");
