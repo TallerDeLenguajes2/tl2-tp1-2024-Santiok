@@ -7,8 +7,8 @@ List<cadete> listaCadetes = new List<cadete>();
 cadeteria nuevaCadeteria = null;
 
 //Ubicacion de los archivos csv.
-string ubicacionCadete = "C:\\Taller2\\tl2-tp1-2024-Santiok\\datos_cadetes.csv";
-string ubicacionCadeteria = "C:\\Taller2\\tl2-tp1-2024-Santiok\\datos_cadeteria.csv";
+string ubicacionCadete = "C:\\Users\\Alumno\\Desktop\\tl2-tp1-2024-Santiok\\datos_cadetes.csv";
+string ubicacionCadeteria = "C:\\Users\\Alumno\\Desktop\\tl2-tp1-2024-Santiok\\datos_cadeteria.csv";
 
 System.IO.StreamReader archivo1 = new System.IO.StreamReader(ubicacionCadete);
 System.IO.StreamReader archivo2 = new System.IO.StreamReader(ubicacionCadeteria);
@@ -244,18 +244,20 @@ void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
     Console.WriteLine($"Pedido {pedidoSeleccionado.NumeroPedido} reasignado a {cadeteSeleccionado.Nombre}.");
 }
 
+
 //Metodo para mostrar el informe al finalizar la jornada.
 void MostrarInformeJornada(List<cadete> listaCadetes)
 {
     int totalEnvios = 0;
-    decimal montoTotal = 0m;
+    float montoTotal = 0;
 
     Console.WriteLine("\nInforme de la jornada:");
 
     foreach (var cadete in listaCadetes)
     {
         int cantidadEnvios = cadete.ListadoPedidos.Count;
-        decimal montoGanado = cantidadEnvios * 500;
+
+        float montoGanado = cadete.JornalACobrar();
 
         Console.WriteLine($"Cadete: {cadete.Nombre}");
         Console.WriteLine($"Envíos realizados: {cantidadEnvios}");

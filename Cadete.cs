@@ -20,4 +20,10 @@ public class cadete
         this.Telefono = tel;
         this.ListadoPedidos = new List<pedidos>();
     }
+
+    public float JornalACobrar()
+    {
+        return 500 * ListadoPedidos.Where(p => p.estado == Estado.COMPLETADO).Count();
+    }
 }
+
