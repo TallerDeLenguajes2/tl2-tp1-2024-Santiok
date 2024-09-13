@@ -249,14 +249,15 @@ void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
 void MostrarInformeJornada(List<cadete> listaCadetes)
 {
     int totalEnvios = 0;
-    decimal montoTotal = 0m;
+    float montoTotal = 0;
 
     Console.WriteLine("\nInforme de la jornada:");
 
     foreach (var cadete in listaCadetes)
     {
         int cantidadEnvios = cadete.ListadoPedidos.Count;
-        decimal montoGanado = cantidadEnvios * 500;
+
+        float montoGanado = cadete.JornalACobrar();
 
         Console.WriteLine($"Cadete: {cadete.Nombre}");
         Console.WriteLine($"Envíos realizados: {cantidadEnvios}");
