@@ -9,7 +9,7 @@ public class cadete
     public string Nombre;
     public string Direccion;
     public string Telefono;
-    public List<pedidos> ListadoPedidos;
+    public int cantPedidos;
 
     //Metodo constructor.
     public cadete(int id, string nom, string dir, string tel)
@@ -18,6 +18,6 @@ public class cadete
         this.Nombre = nom;
         this.Direccion = dir;
         this.Telefono = tel;
-        this.ListadoPedidos = new List<pedidos>();
+        this.cantPedidos = 0;
     }
 }

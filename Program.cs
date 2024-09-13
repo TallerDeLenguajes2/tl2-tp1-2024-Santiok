@@ -106,16 +106,16 @@ do
             DarDeAltaPedido(listaPedidos, arregloClientes);
             break;
         case 2:
-            AsignarPedidoACadete(listaPedidos, listaCadetes);
+            //AsignarPedidoACadete(listaPedidos, listaCadetes);
             break;
         case 3:
-            CambiarEstadoPedido(listaPedidos);
+            //CambiarEstadoPedido(listaPedidos);
             break;
         case 4:
-            ReasignarPedido(listaPedidos, listaCadetes);
+            //ReasignarPedido(listaPedidos, listaCadetes);
             break;
         case 5:
-            MostrarInformeJornada(listaCadetes);
+            //MostrarInformeJornada(listaCadetes);
             continuar = false;
             break;
         default:
@@ -125,7 +125,6 @@ do
 } while (continuar);
 
 //Metodos del programa.
-
 void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
 {
     Random random = new Random();
@@ -138,7 +137,7 @@ void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
     listaPedidos.Add(newPedido);
     Console.WriteLine($"Pedido {newPedido.NumeroPedido} agregado con éxito.");
 }
-
+/*
 void AsignarPedidoACadete(List<pedidos> listaPedidos, List<cadete> listaCadetes)
 {
     var pedidosPendientes = listaPedidos.Where(p => p.estado == Estado.PENDIENTE).ToList();
@@ -274,3 +273,4 @@ void MostrarInformeJornada(List<cadete> listaCadetes)
     Console.WriteLine($"Monto total ganado: ${montoTotal}");
     Console.WriteLine($"Promedio de envíos por cadete: {promedioEnvios:F2}");
 }
+*/
