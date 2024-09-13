@@ -7,8 +7,8 @@ List<cadete> listaCadetes = new List<cadete>();
 cadeteria nuevaCadeteria = null;
 
 //Ubicacion de los archivos csv.
-string ubicacionCadete = "C:\\Taller2\\tl2-tp1-2024-Santiok\\datos_cadetes.csv";
-string ubicacionCadeteria = "C:\\Taller2\\tl2-tp1-2024-Santiok\\datos_cadeteria.csv";
+string ubicacionCadete = "C:\\Users\\Alumno\\Desktop\tl2-tp1-2024-Santiok\\datos_cadetes.csv";
+string ubicacionCadeteria = "C:\\Users\\Alumno\\Desktop\tl2-tp1-2024-Santiok\\datos_cadeteria.csv";
 
 System.IO.StreamReader archivo1 = new System.IO.StreamReader(ubicacionCadete);
 System.IO.StreamReader archivo2 = new System.IO.StreamReader(ubicacionCadeteria);
@@ -269,11 +269,16 @@ void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
         return;
     }
 
-    var cadeteActual = listaCadetes.FirstOrDefault(c => c.ListadoPedidos.Contains(pedidoSeleccionado));
+
+
+
+
+
+    /*var cadeteActual = listaCadetes.FirstOrDefault(c => c.ListadoPedidos.Contains(pedidoSeleccionado));
     if (cadeteActual != null)
     {
         cadeteActual.ListadoPedidos.Remove(pedidoSeleccionado);
-    }
+    }*/
 
     Console.WriteLine("Cadetes disponibles para reasignar:");
     for (int i = 0; i < listaCadetes.Count; i++)
@@ -291,7 +296,10 @@ void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
     }
 
     var cadeteSeleccionado = listaCadetes[indiceCadete];
-    cadeteSeleccionado.ListadoPedidos.Add(pedidoSeleccionado);
+    //cadeteSeleccionado.ListadoPedidos.Add(pedidoSeleccionado);
+
+    pedidoSeleccionado.cadeteAsignado = cadeteSeleccionado;
+
     Console.WriteLine($"Pedido {pedidoSeleccionado.NumeroPedido} reasignado a {cadeteSeleccionado.Nombre}.");
 }
 
