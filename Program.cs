@@ -106,13 +106,13 @@ do
             DarDeAltaPedido(listaPedidos, arregloClientes);
             break;
         case 2:
-            //AsignarPedidoACadete(listaPedidos, listaCadetes);
+            AsignarPedidoACadete(listaPedidos, listaCadetes);
             break;
         case 3:
-            //CambiarEstadoPedido(listaPedidos);
+            CambiarEstadoPedido(listaPedidos);
             break;
         case 4:
-            //ReasignarPedido(listaPedidos, listaCadetes);
+            ReasignarPedido(listaPedidos, listaCadetes);
             break;
         case 5:
             //MostrarInformeJornada(listaCadetes);
@@ -124,22 +124,64 @@ do
     }
 } while (continuar);
 
+
+
+
 //Metodos del programa.
+//Dar de alta un pedido.
 void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
 {
+    bool continuar2 = true;
     Random random = new Random();
     int numeroP = random.Next(100, 10000);
     Console.WriteLine("Por favor, ingrese alguna observación:");
     string obs = Console.ReadLine();
     cliente clienteAux = arregloClientes[random.Next(0, arregloClientes.Length)];
-
+    //Añado el pedido a la lista de pedidos.
     pedidos newPedido = new pedidos(numeroP, obs, clienteAux, Estado.PENDIENTE);
     listaPedidos.Add(newPedido);
     Console.WriteLine($"Pedido {newPedido.NumeroPedido} agregado con éxito.");
+    //Añado un cadete al pedido.
+    do
+    {
+        Console.WriteLine($"¿Desea asignar este pedido a algun cadete?\n 1)Si \n 2)No");
+        int opcion1 = int.Parse(Console.ReadLine());
+        if (opcion1 < 1 || opcion1 > 2)
+        {
+            Console.WriteLine($"La opcion ingresada es incorrecta.");
+        }else
+        {
+            continuar2 = false;
+            Console.WriteLine("Cadetes disponibles:");
+            for (int i = 0; i < listaCadetes.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}) {listaCadetes[i].Nombre}");
+            }
+
+            Console.WriteLine("Seleccione un cadete:");
+            int indiceCadete = int.Parse(Console.ReadLine() ?? "0") - 1;
+
+            if (indiceCadete < 0 || indiceCadete >= listaCadetes.Count)
+            {
+                Console.WriteLine("Cadete no encontrado.");
+                return;
+            }
+            var cadeteSeleccionado = listaCadetes[indiceCadete];
+
+            //Añado al cadete.
+            nuevaCadeteria.AsignarCadeteAPedido(cadeteSeleccionado.ID, numeroP);
+        }
+
+    } while (continuar2);
 }
-/*
+
+
+
+
+//Asigno el pedido a cadetes.
 void AsignarPedidoACadete(List<pedidos> listaPedidos, List<cadete> listaCadetes)
 {
+    /*Si el pedido esta en pendiente es porque no fue asignado a ningun cadete o porque el cliente no queria un cadete asignado.*/
     var pedidosPendientes = listaPedidos.Where(p => p.estado == Estado.PENDIENTE).ToList();
     if (!pedidosPendientes.Any())
     {
@@ -176,11 +218,16 @@ void AsignarPedidoACadete(List<pedidos> listaPedidos, List<cadete> listaCadetes)
     }
 
     var cadeteSeleccionado = listaCadetes[indiceCadete];
-    cadeteSeleccionado.ListadoPedidos.Add(pedidoSeleccionado);
+    //cadeteSeleccionado.ListadoPedidos.Add(pedidoSeleccionado);
+    nuevaCadeteria.AsignarCadeteAPedido(cadeteSeleccionado.ID, pedidoSeleccionado.NumeroPedido);
     pedidoSeleccionado.estado = Estado.COMPLETADO;
     Console.WriteLine($"Pedido {pedidoSeleccionado.NumeroPedido} asignado a {cadeteSeleccionado.Nombre}.");
 }
 
+
+
+
+//Cambio el estado del pedido.
 void CambiarEstadoPedido(List<pedidos> listaPedidos)
 {
     Console.WriteLine("Pedidos disponibles:");
@@ -202,6 +249,10 @@ void CambiarEstadoPedido(List<pedidos> listaPedidos)
     Console.WriteLine($"Estado del pedido {pedidoSeleccionado.NumeroPedido} actualizado a {pedidoSeleccionado.estado}.");
 }
 
+
+
+
+//Reasigno el pedido a otro cadete.
 void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
 {
     Console.WriteLine("Pedidos asignados:");
@@ -244,6 +295,9 @@ void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
     Console.WriteLine($"Pedido {pedidoSeleccionado.NumeroPedido} reasignado a {cadeteSeleccionado.Nombre}.");
 }
 
+
+
+/*
 //Metodo para mostrar el informe al finalizar la jornada.
 void MostrarInformeJornada(List<cadete> listaCadetes)
 {
