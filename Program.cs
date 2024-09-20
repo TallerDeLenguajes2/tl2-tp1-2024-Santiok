@@ -7,8 +7,8 @@ List<cadete> listaCadetes = new List<cadete>();
 cadeteria nuevaCadeteria = null;
 
 //Ubicacion de los archivos csv.
-string ubicacionCadete = "C:\\Users\\Alumno\\Desktop\tl2-tp1-2024-Santiok\\datos_cadetes.csv";
-string ubicacionCadeteria = "C:\\Users\\Alumno\\Desktop\tl2-tp1-2024-Santiok\\datos_cadeteria.csv";
+string ubicacionCadete = "C:\\Users\\Alumno\\Desktop\\tl2-tp1-2024-Santiok\\datos_cadetes.csv";
+string ubicacionCadeteria = "C:\\Users\\Alumno\\Desktop\\tl2-tp1-2024-Santiok\\datos_cadeteria.csv";
 
 System.IO.StreamReader archivo1 = new System.IO.StreamReader(ubicacionCadete);
 System.IO.StreamReader archivo2 = new System.IO.StreamReader(ubicacionCadeteria);
@@ -66,6 +66,7 @@ while ((linea2 = archivo2.ReadLine()) != null)
 }
 //Cierro el archivo.
 archivo2.Close();
+nuevaCadeteria.cargarCadetes(listaCadetes);
 /*
 //Mostrar la cadeteria para ver si anda bien.
 if (nuevaCadeteria != null)
@@ -91,7 +92,7 @@ foreach (var cliente in arregloClientes)
 {
     Console.WriteLine($"Nombre: {cliente.Nombre}, Dirección: {cliente.Direccion}, Teléfono: {cliente.Telefono}, Referencia: {string.Join(", ", cliente.DatosReferencia)}");
 }
-*/ 
+*/
 
 bool continuar = true;
 do
@@ -103,7 +104,7 @@ do
     switch (opcion)
     {
         case 1:
-            DarDeAltaPedido(listaPedidos, arregloClientes);
+            DarDeAltaPedido(nuevaCadeteria.ListadoPedidos, arregloClientes);
             break;
         case 2:
             AsignarPedidoACadete(listaPedidos, listaCadetes);
@@ -149,27 +150,42 @@ void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
         if (opcion1 < 1 || opcion1 > 2)
         {
             Console.WriteLine($"La opcion ingresada es incorrecta.");
-        }else
+        }
+        else
         {
             continuar2 = false;
-            Console.WriteLine("Cadetes disponibles:");
-            for (int i = 0; i < listaCadetes.Count; i++)
+
+            switch (opcion1)
             {
-                Console.WriteLine($"{i + 1}) {listaCadetes[i].Nombre}");
+                case 1:
+                    Console.WriteLine("Cadetes disponibles:");
+                    for (int i = 0; i < listaCadetes.Count; i++)
+                    {
+                        Console.WriteLine($"{i + 1}) {listaCadetes[i].Nombre}");
+                    }
+
+                    Console.WriteLine("Seleccione un cadete:");
+                    int indiceCadete = int.Parse(Console.ReadLine() ?? "0") - 1;
+
+                    if (indiceCadete < 0 || indiceCadete >= listaCadetes.Count)
+                    {
+                        Console.WriteLine("Cadete no encontrado.");
+                        return;
+                    }
+                    var cadeteSeleccionado = listaCadetes[indiceCadete];
+
+                    //Añado al cadete.
+                    nuevaCadeteria.AsignarCadeteAPedido(cadeteSeleccionado.ID, numeroP);
+                    break;
+
+                case 2:
+                    break;
+
+                default:
+                    break;
             }
 
-            Console.WriteLine("Seleccione un cadete:");
-            int indiceCadete = int.Parse(Console.ReadLine() ?? "0") - 1;
 
-            if (indiceCadete < 0 || indiceCadete >= listaCadetes.Count)
-            {
-                Console.WriteLine("Cadete no encontrado.");
-                return;
-            }
-            var cadeteSeleccionado = listaCadetes[indiceCadete];
-
-            //Añado al cadete.
-            nuevaCadeteria.AsignarCadeteAPedido(cadeteSeleccionado.ID, numeroP);
         }
 
     } while (continuar2);
