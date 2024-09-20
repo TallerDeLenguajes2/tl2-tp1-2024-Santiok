@@ -107,13 +107,13 @@ do
             DarDeAltaPedido(nuevaCadeteria.ListadoPedidos, arregloClientes);
             break;
         case 2:
-            AsignarPedidoACadete(listaPedidos, listaCadetes);
+            AsignarPedidoACadete(nuevaCadeteria.ListadoPedidos, listaCadetes);
             break;
         case 3:
-            CambiarEstadoPedido(listaPedidos);
+            CambiarEstadoPedido(nuevaCadeteria.ListadoPedidos);
             break;
         case 4:
-            ReasignarPedido(listaPedidos, listaCadetes);
+            ReasignarPedido(nuevaCadeteria.ListadoPedidos, listaCadetes);
             break;
         case 5:
             //MostrarInformeJornada(listaCadetes);
@@ -176,6 +176,7 @@ void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
 
                     //Añado al cadete.
                     nuevaCadeteria.AsignarCadeteAPedido(cadeteSeleccionado.ID, numeroP);
+                    newPedido.estado = Estado.COMPLETADO;
                     break;
 
                 case 2:
