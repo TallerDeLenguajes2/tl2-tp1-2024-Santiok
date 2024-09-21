@@ -116,7 +116,7 @@ do
             ReasignarPedido(nuevaCadeteria.ListadoPedidos, listaCadetes);
             break;
         case 5:
-            //MostrarInformeJornada();
+            MostrarInformeJornada();
             continuar = false;
             break;
         default:
@@ -125,10 +125,8 @@ do
     }
 } while (continuar);
 
-
-
-
 //Metodos del programa.
+
 //Dar de alta un pedido.
 void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
 {
@@ -177,6 +175,7 @@ void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
                     //Añado al cadete.
                     nuevaCadeteria.AsignarCadeteAPedido(cadeteSeleccionado.ID, numeroP);
                     newPedido.estado = Estado.COMPLETADO;
+                    cadeteSeleccionado.cantPedidos++;
                     break;
 
                 case 2:
@@ -235,9 +234,9 @@ void AsignarPedidoACadete(List<pedidos> listaPedidos, List<cadete> listaCadetes)
     }
 
     var cadeteSeleccionado = listaCadetes[indiceCadete];
-    //cadeteSeleccionado.ListadoPedidos.Add(pedidoSeleccionado);
     nuevaCadeteria.AsignarCadeteAPedido(cadeteSeleccionado.ID, pedidoSeleccionado.NumeroPedido);
     pedidoSeleccionado.estado = Estado.COMPLETADO;
+    cadeteSeleccionado.cantPedidos++;
     Console.WriteLine($"Pedido {pedidoSeleccionado.NumeroPedido} asignado a {cadeteSeleccionado.Nombre}.");
 }
 
@@ -286,17 +285,6 @@ void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
         return;
     }
 
-
-
-
-
-
-    /*var cadeteActual = listaCadetes.FirstOrDefault(c => c.ListadoPedidos.Contains(pedidoSeleccionado));
-    if (cadeteActual != null)
-    {
-        cadeteActual.ListadoPedidos.Remove(pedidoSeleccionado);
-    }*/
-
     Console.WriteLine("Cadetes disponibles para reasignar:");
     for (int i = 0; i < listaCadetes.Count; i++)
     {
@@ -313,7 +301,6 @@ void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
     }
 
     var cadeteSeleccionado = listaCadetes[indiceCadete];
-    //cadeteSeleccionado.ListadoPedidos.Add(pedidoSeleccionado);
 
     pedidoSeleccionado.cadeteAsignado = cadeteSeleccionado;
 
@@ -322,38 +309,8 @@ void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
 
 
 
-/*
+
 //Metodo para mostrar el informe al finalizar la jornada.
-void MostrarInformeJornada(List<cadete> listaCadetes)
-{
-    int totalEnvios = 0;
-    float montoTotal = 0;
-
-    Console.WriteLine("\nInforme de la jornada:");
-
-    foreach (var cadete in listaCadetes)
-    {
-        int cantidadEnvios = cadete.ListadoPedidos.Count;
-
-        float montoGanado = cadete.JornalACobrar();
-
-        Console.WriteLine($"Cadete: {cadete.Nombre}");
-        Console.WriteLine($"Envíos realizados: {cantidadEnvios}");
-        Console.WriteLine($"Monto ganado: ${montoGanado}\n");
-
-        totalEnvios += cantidadEnvios;
-        montoTotal += montoGanado;
-    }
-
-    //Calculo del promedio de envíos por cadete.
-    double promedioEnvios = listaCadetes.Count > 0 ? (double)totalEnvios / listaCadetes.Count : 0;
-
-    Console.WriteLine($"Total de envíos: {totalEnvios}");
-    Console.WriteLine($"Monto total ganado: ${montoTotal}");
-    Console.WriteLine($"Promedio de envíos por cadete: {promedioEnvios:F2}");
-}
-*/
-/*
 void MostrarInformeJornada()
 {
     int totalEnvios = 0;
@@ -361,7 +318,7 @@ void MostrarInformeJornada()
 
     Console.WriteLine("\n---- Informe de la jornada ----");
 
-    foreach (cadete cad in listadoCadetes)
+    foreach (cadete cad in nuevaCadeteria.ListadoCadetes)
     {
         //Cantidad de pedidos asignados al cadete.
         int cantidadEnvios = cad.cantPedidos; 
@@ -377,10 +334,10 @@ void MostrarInformeJornada()
     }
 
     //Calculo el promedio de envios por cadete.
-    double promedioEnvios = listadoCadetes.Count > 0 ? (double)totalEnvios / listadoCadetes.Count : 0;
+    double promedioEnvios = nuevaCadeteria.ListadoCadetes.Count > 0 ? (double)totalEnvios / nuevaCadeteria.ListadoCadetes.Count : 0;
 
     Console.WriteLine($"Total de envíos realizados: {totalEnvios}");
     Console.WriteLine($"Monto total ganado por los cadetes: ${montoTotal}");
     Console.WriteLine($"Promedio de envíos por cadete: {promedioEnvios:F2}");
 }
-*/
+

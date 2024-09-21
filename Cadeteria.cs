@@ -11,6 +11,8 @@ public class cadeteria
 
     public List<pedidos> ListadoPedidos { get => listadoPedidos; set => listadoPedidos = value; }
 
+    public List<cadete> ListadoCadetes { get => listadoCadetes; set => listadoCadetes = value; }
+
     //Metodo constructor.
     public cadeteria(string nom, string tel)
     {
