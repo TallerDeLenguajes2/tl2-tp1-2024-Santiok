@@ -7,8 +7,8 @@ List<cadete> listaCadetes = new List<cadete>();
 cadeteria nuevaCadeteria = null;
 
 //Ubicacion de los archivos csv.
-string ubicacionCadete = "C:\\Users\\Alumno\\Desktop\\tl2-tp1-2024-Santiok\\datos_cadetes.csv";
-string ubicacionCadeteria = "C:\\Users\\Alumno\\Desktop\\tl2-tp1-2024-Santiok\\datos_cadeteria.csv";
+string ubicacionCadete = "C:\\Taller2\\tl2-tp1-2024-Santiok\\datos_cadetes.csv";
+string ubicacionCadeteria = "C:\\Taller2\\tl2-tp1-2024-Santiok\\datos_cadeteria.csv";
 
 System.IO.StreamReader archivo1 = new System.IO.StreamReader(ubicacionCadete);
 System.IO.StreamReader archivo2 = new System.IO.StreamReader(ubicacionCadeteria);
@@ -116,7 +116,7 @@ do
             ReasignarPedido(nuevaCadeteria.ListadoPedidos, listaCadetes);
             break;
         case 5:
-            //MostrarInformeJornada(listaCadetes);
+            //MostrarInformeJornada();
             continuar = false;
             break;
         default:
@@ -350,6 +350,37 @@ void MostrarInformeJornada(List<cadete> listaCadetes)
 
     Console.WriteLine($"Total de envíos: {totalEnvios}");
     Console.WriteLine($"Monto total ganado: ${montoTotal}");
+    Console.WriteLine($"Promedio de envíos por cadete: {promedioEnvios:F2}");
+}
+*/
+/*
+void MostrarInformeJornada()
+{
+    int totalEnvios = 0;
+    float montoTotal = 0;
+
+    Console.WriteLine("\n---- Informe de la jornada ----");
+
+    foreach (cadete cad in listadoCadetes)
+    {
+        //Cantidad de pedidos asignados al cadete.
+        int cantidadEnvios = cad.cantPedidos; 
+         //Monto ganado por cada envio.
+        float montoGanado = cantidadEnvios * 500;
+
+        Console.WriteLine($"Cadete: {cad.Nombre}");
+        Console.WriteLine($"Cantidad de envíos realizados: {cantidadEnvios}");
+        Console.WriteLine($"Monto ganado: ${montoGanado}\n");
+
+        totalEnvios += cantidadEnvios;
+        montoTotal += montoGanado;
+    }
+
+    //Calculo el promedio de envios por cadete.
+    double promedioEnvios = listadoCadetes.Count > 0 ? (double)totalEnvios / listadoCadetes.Count : 0;
+
+    Console.WriteLine($"Total de envíos realizados: {totalEnvios}");
+    Console.WriteLine($"Monto total ganado por los cadetes: ${montoTotal}");
     Console.WriteLine($"Promedio de envíos por cadete: {promedioEnvios:F2}");
 }
 */
