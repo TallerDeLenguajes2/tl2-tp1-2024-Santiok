@@ -1,15 +1,51 @@
-﻿using Cadete;
+﻿using AccesoADatos;
+using Cadete;
 using Cadeteria;
 using Cliente;
 using Pedidos;
+using AccesoADatos;
 
 List<cadete> listaCadetes = new List<cadete>();
 cadeteria nuevaCadeteria = null;
+List<pedidos> listaPedidos = new List<pedidos>();
 
 //Ubicacion de los archivos csv.
 string ubicacionCadete = "C:\\Taller2\\tl2-tp1-2024-Santiok\\datos_cadetes.csv";
 string ubicacionCadeteria = "C:\\Taller2\\tl2-tp1-2024-Santiok\\datos_cadeteria.csv";
+//Interfaz para cargar datos
+accesoADatos accesoDatos = null;
 
+//Creo un arreglo de clientes.
+cliente[] arregloClientes = new cliente[10];
+for (int i = 0; i < 10; i++)
+{
+    arregloClientes[i] = cliente.CrearCliente();
+}
+/*
+foreach (var cliente in arregloClientes)
+{
+    Console.WriteLine($"Nombre: {cliente.Nombre}, Dirección: {cliente.Direccion}, Teléfono: {cliente.Telefono}, Referencia: {string.Join(", ", cliente.DatosReferencia)}");
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 System.IO.StreamReader archivo1 = new System.IO.StreamReader(ubicacionCadete);
 System.IO.StreamReader archivo2 = new System.IO.StreamReader(ubicacionCadeteria);
 
@@ -49,6 +85,7 @@ foreach (var cadete in listaCadetes)
     Console.WriteLine($"ID: {cadete.ID}, Nombre: {cadete.Nombre}, Dirección: {cadete.Direccion}, Teléfono: {cadete.Telefono}");
 }
 */
+/*
 //Leo cada linea del archivo CSV de cadeteria.
 while ((linea2 = archivo2.ReadLine()) != null)
 {
@@ -64,6 +101,7 @@ while ((linea2 = archivo2.ReadLine()) != null)
         nuevaCadeteria = new cadeteria(nombre, telefono);
     }
 }
+/*
 //Cierro el archivo.
 archivo2.Close();
 nuevaCadeteria.cargarCadetes(listaCadetes);
@@ -78,22 +116,85 @@ else
     Console.WriteLine("No se cargó ninguna cadeteria.");
 }
 */
-//Creo lista de pedidos.
-List<pedidos> listaPedidos = new List<pedidos>();
 
-//Creo un arreglo de clientes.
-cliente[] arregloClientes = new cliente[10];
-for (int i = 0; i < 10; i++)
-{
-    arregloClientes[i] = cliente.CrearCliente();
-}
-/*
-foreach (var cliente in arregloClientes)
-{
-    Console.WriteLine($"Nombre: {cliente.Nombre}, Dirección: {cliente.Direccion}, Teléfono: {cliente.Telefono}, Referencia: {string.Join(", ", cliente.DatosReferencia)}");
-}
-*/
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Menu de opciones para leer archivos.
+bool continuar3 = true;
+do
+{
+    int opcion3;
+    Console.WriteLine("\nIngrese que tipo de archivo desea leer:\n 1)Archivo Json \n 2)Archivo CSV \n");
+    int.TryParse(Console.ReadLine(), out opcion3);
+
+    switch (opcion3)
+    {
+        case 1:
+
+            //Usar la clase AccesoJson para cargar desde archivos JSON.
+            accesoDatos = new AccesoJson();
+            try
+            {
+                nuevaCadeteria = accesoDatos.CrearCadeteria();
+                listaCadetes = accesoDatos.CrearCadetes();
+                Console.WriteLine("Datos cargados correctamente desde el archivo JSON.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al cargar datos desde JSON: {ex.Message}");
+            }
+            continuar3 = false;
+            break;
+
+        case 2: 
+
+            //Usar la clase AccesoCsv para cargar desde archivos CSV.
+            accesoDatos = new AccesoCsv();
+            try
+            {
+                nuevaCadeteria = accesoDatos.CrearCadeteria();
+                listaCadetes = accesoDatos.CrearCadetes();
+                Console.WriteLine("Datos cargados correctamente desde el archivo CSV.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al cargar datos desde CSV: {ex.Message}");
+            }
+            continuar3 = false;        
+        break;
+        
+        default:
+            Console.WriteLine("\nLa opcion ingresada es incorrecta, vuelva a ingresar.\n");
+        break;
+    }
+} while (continuar3);
+
+//Menu de opciones para operar.
 bool continuar = true;
 do
 {
