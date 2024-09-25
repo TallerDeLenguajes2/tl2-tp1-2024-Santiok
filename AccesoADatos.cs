@@ -78,8 +78,8 @@ public class AccesoJson : accesoADatos
 {
     public cadeteria CrearCadeteria()
     {
-        var datosCadeteriaJson = LeerArchivo("datos_cadeteria.json").FirstOrDefault(); 
-        
+        var datosCadeteriaJson = LeerArchivo("datos_cadeteria.json").FirstOrDefault();
+
         if (string.IsNullOrWhiteSpace(datosCadeteriaJson))
             throw new Exception("No se pudieron leer los datos de la cadeteria del json");
 
@@ -94,7 +94,7 @@ public class AccesoJson : accesoADatos
     public List<cadete> CrearCadetes()
     {
         var datosCadetesJson = LeerArchivo("datos_cadetes.json").FirstOrDefault();
-        
+
         if (string.IsNullOrWhiteSpace(datosCadetesJson))
             return new List<cadete>();
 

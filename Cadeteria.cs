@@ -1,10 +1,15 @@
 namespace Cadeteria;
+
+using System.Text.Json.Serialization;
+
 using Cadete;
 using Pedidos;
 
 public class cadeteria
 {
+    [JsonPropertyName("nombre")]
     public string Nombre;
+    [JsonPropertyName("telefono")]
     public string Telefono;
     private List<cadete> listadoCadetes;
     private List<pedidos> listadoPedidos;
@@ -14,17 +19,25 @@ public class cadeteria
     public List<cadete> ListadoCadetes { get => listadoCadetes; set => listadoCadetes = value; }
 
     //Metodo constructor.
+    public cadeteria()
+    {
+        Nombre = string.Empty;
+        Telefono = string.Empty;
+        listadoPedidos = new List<pedidos>();
+        listadoCadetes = new List<cadete>();
+    }
     public cadeteria(string nom, string tel)
     {
         this.Nombre = nom;
         this.Telefono = tel;
         listadoPedidos = new List<pedidos>();
+        listadoCadetes = new List<cadete>();
     }
 
     //Metodo para calcular el jornal.
     public float JornalACobrar(int idCadete)
     {
-        cadete? cadeteAux = listadoCadetes.FirstOrDefault(p => p.ID == idCadete);
+        cadete? cadeteAux = listadoCadetes.FirstOrDefault(p => p.Id == idCadete);
         int cantPedidos = cadeteAux.cantPedidos;
         return 500 * cantPedidos/*.Where(p => p.estado == Estado.COMPLETADO).Count()*/;
     }
@@ -38,7 +51,7 @@ public class cadeteria
     public void AsignarCadeteAPedido(int idCadete, int idPedido)
     {
         pedidos pedidoAux = listadoPedidos.FirstOrDefault(p => p.NumeroPedido == idPedido);
-        cadete cadeteAux = listadoCadetes.FirstOrDefault(p => p.ID == idCadete);
+        cadete cadeteAux = listadoCadetes.FirstOrDefault(p => p.Id == idCadete);
 
         pedidoAux.AgregarCadeteAlPedido(pedidoAux, cadeteAux);
     }

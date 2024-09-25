@@ -1,23 +1,50 @@
 namespace Cadete;
 using Pedidos;
 using System.Linq;
+using System.Text.Json.Serialization;
+
 
 public class cadete
 {
     private const float pagoPorPedidoEntregado = 500;
-    public int ID;
-    public string Nombre;
-    public string Direccion;
-    public string Telefono;
+
+    private int id;
+    private string nombre;
+    private string direccion;
+    private string telefono;
+
     public int cantPedidos;
 
     //Metodo constructor.
+    public cadete()
+    {
+        id = 0;
+        nombre = string.Empty;
+        direccion = string.Empty;
+        telefono = string.Empty;
+        cantPedidos = 0;
+    }
+
     public cadete(int id, string nom, string dir, string tel)
     {
-        this.ID = id;
-        this.Nombre = nom;
-        this.Direccion = dir;
-        this.Telefono = tel;
+        this.id = id;
+        this.nombre = nom;
+        this.direccion = dir;
+        this.telefono = tel;
         this.cantPedidos = 0;
+    }
+
+    [JsonPropertyName("id")]
+    public int Id { get => id; set => id = value; }
+    [JsonPropertyName("nombre")]
+    public string Nombre { get => nombre; set => nombre = value; }
+    [JsonPropertyName("direccion")]
+    public string Direccion { get => direccion; set => direccion = value; }
+    [JsonPropertyName("telefono")]
+    public string Telefono { get => telefono; set => telefono = value; }
+
+    public override string ToString()
+    {
+        return Id + " - " + Nombre + " - " + Direccion + " - " + Telefono;
     }
 }
