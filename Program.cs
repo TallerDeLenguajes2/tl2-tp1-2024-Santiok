@@ -28,122 +28,6 @@ foreach (var cliente in arregloClientes)
 }
 */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-System.IO.StreamReader archivo1 = new System.IO.StreamReader(ubicacionCadete);
-System.IO.StreamReader archivo2 = new System.IO.StreamReader(ubicacionCadeteria);
-
-char separador = ',';
-string linea1;
-string linea2;
-
-//Para eliminar el encabezado.
-archivo1.ReadLine();
-archivo2.ReadLine();
-
-//Leo cada linea del archivo CSV de cadetes.
-while ((linea1 = archivo1.ReadLine()) != null)
-{
-    //Transformo en arreglo la linea.
-    string[] datosCadete = linea1.Split(separador);
-
-    //Verificar que haya al menos 4 columnas en cada linea.
-    if (datosCadete.Length >= 4)
-    {
-        int id = int.Parse(datosCadete[0]);
-        string nombre = datosCadete[1];
-        string direccion = datosCadete[2];
-        string telefono = datosCadete[3];
-
-        //Creo un nuevo objeto cadete y lo agrego a la lista.
-        cadete nuevoCadete = new cadete(id, nombre, direccion, telefono);
-        listaCadetes.Add(nuevoCadete);
-    }
-}
-//Cierro el archivo.
-archivo1.Close();
-/*
-//Mostrar los cadetes para probar que ande bien.
-foreach (var cadete in listaCadetes)
-{
-    Console.WriteLine($"ID: {cadete.ID}, Nombre: {cadete.Nombre}, Dirección: {cadete.Direccion}, Teléfono: {cadete.Telefono}");
-}
-*/
-/*
-//Leo cada linea del archivo CSV de cadeteria.
-while ((linea2 = archivo2.ReadLine()) != null)
-{
-    //Transformo en arreglo la linea.
-    string[] datosCadeteria = linea2.Split(separador);
-
-    //Verificar que haya al menos 4 columnas en cada linea.
-    if (datosCadeteria.Length >= 2)
-    {
-        string nombre = datosCadeteria[0];
-        string telefono = datosCadeteria[1];
-
-        nuevaCadeteria = new cadeteria(nombre, telefono);
-    }
-}
-/*
-//Cierro el archivo.
-archivo2.Close();
-nuevaCadeteria.cargarCadetes(listaCadetes);
-/*
-//Mostrar la cadeteria para ver si anda bien.
-if (nuevaCadeteria != null)
-{
-    Console.WriteLine($"Nombre: {nuevaCadeteria.Nombre}, Teléfono: {nuevaCadeteria.Telefono}");
-}
-else
-{
-    Console.WriteLine("No se cargó ninguna cadeteria.");
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Menu de opciones para leer archivos.
 bool continuar3 = true;
 do
@@ -292,9 +176,6 @@ void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
     } while (continuar2);
 }
 
-
-
-
 //Asigno el pedido a cadetes.
 void AsignarPedidoACadete(List<pedidos> listaPedidos, List<cadete> listaCadetes)
 {
@@ -341,9 +222,6 @@ void AsignarPedidoACadete(List<pedidos> listaPedidos, List<cadete> listaCadetes)
     Console.WriteLine($"Pedido {pedidoSeleccionado.NumeroPedido} asignado a {cadeteSeleccionado.Nombre}.");
 }
 
-
-
-
 //Cambio el estado del pedido.
 void CambiarEstadoPedido(List<pedidos> listaPedidos)
 {
@@ -365,9 +243,6 @@ void CambiarEstadoPedido(List<pedidos> listaPedidos)
     pedidoSeleccionado.estado = (Estado)nuevoEstado;
     Console.WriteLine($"Estado del pedido {pedidoSeleccionado.NumeroPedido} actualizado a {pedidoSeleccionado.estado}.");
 }
-
-
-
 
 //Reasigno el pedido a otro cadete.
 void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
@@ -407,9 +282,6 @@ void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
 
     Console.WriteLine($"Pedido {pedidoSeleccionado.NumeroPedido} reasignado a {cadeteSeleccionado.Nombre}.");
 }
-
-
-
 
 //Metodo para mostrar el informe al finalizar la jornada.
 void MostrarInformeJornada()
