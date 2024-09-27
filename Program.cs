@@ -291,7 +291,7 @@ void MostrarInformeJornada()
 
     Console.WriteLine("\n---- Informe de la jornada ----");
 
-    foreach (cadete cad in nuevaCadeteria.ListadoCadetes)
+    foreach (cadete cad in listaCadetes/*nuevaCadeteria.ListadoCadetes*/)
     {
         //Cantidad de pedidos asignados al cadete.
         int cantidadEnvios = cad.cantPedidos;
