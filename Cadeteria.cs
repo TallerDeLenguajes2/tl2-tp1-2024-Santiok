@@ -8,15 +8,16 @@ using Pedidos;
 public class cadeteria
 {
     [JsonPropertyName("nombre")]
-    public string Nombre;
+    private string nombre;
     [JsonPropertyName("telefono")]
-    public string Telefono;
+    private string telefono;
     private List<cadete> listadoCadetes;
     private List<pedidos> listadoPedidos;
 
     public List<pedidos> ListadoPedidos { get => listadoPedidos; set => listadoPedidos = value; }
-
     public List<cadete> ListadoCadetes { get => listadoCadetes; set => listadoCadetes = value; }
+    public string Nombre { get => nombre; set => nombre = value; }
+    public string Telefono { get => telefono; set => telefono = value; }
 
     //Metodo constructor.
     public cadeteria()
@@ -38,7 +39,7 @@ public class cadeteria
     public float JornalACobrar(int idCadete)
     {
         cadete? cadeteAux = listadoCadetes.FirstOrDefault(p => p.Id == idCadete);
-        int cantPedidos = cadeteAux.cantPedidos;
+        int cantPedidos = cadeteAux.CantPedidos;
         return 500 * cantPedidos;
     }
 

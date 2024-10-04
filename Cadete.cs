@@ -7,13 +7,11 @@ using System.Text.Json.Serialization;
 public class cadete
 {
     private const float pagoPorPedidoEntregado = 500;
-
     private int id;
     private string nombre;
     private string direccion;
     private string telefono;
-
-    public int cantPedidos;
+    private int cantPedidos;
 
     //Metodo constructor.
     public cadete()
@@ -42,6 +40,7 @@ public class cadete
     public string Direccion { get => direccion; set => direccion = value; }
     [JsonPropertyName("telefono")]
     public string Telefono { get => telefono; set => telefono = value; }
+    public int CantPedidos { get => cantPedidos; set => cantPedidos = value; }
 
     public override string ToString()
     {

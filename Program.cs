@@ -160,7 +160,7 @@ void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
                     //Añado al cadete.
                     nuevaCadeteria.AsignarCadeteAPedido(cadeteSeleccionado.Id, numeroP);
                     newPedido.Estado = Estado.COMPLETADO;
-                    cadeteSeleccionado.cantPedidos++;
+                    cadeteSeleccionado.CantPedidos++;
                     break;
 
                 case 2:
@@ -217,7 +217,7 @@ void AsignarPedidoACadete(List<pedidos> listaPedidos, List<cadete> listaCadetes)
     var cadeteSeleccionado = listaCadetes[indiceCadete];
     nuevaCadeteria.AsignarCadeteAPedido(cadeteSeleccionado.Id, pedidoSeleccionado.NumeroPedido);
     pedidoSeleccionado.Estado = Estado.COMPLETADO;
-    cadeteSeleccionado.cantPedidos++;
+    cadeteSeleccionado.CantPedidos++;
     Console.WriteLine($"Pedido {pedidoSeleccionado.NumeroPedido} asignado a {cadeteSeleccionado.Nombre}.");
 }
 
@@ -293,7 +293,7 @@ void MostrarInformeJornada()
     foreach (cadete cad in listaCadetes/*nuevaCadeteria.ListadoCadetes*/)
     {
         //Cantidad de pedidos asignados al cadete.
-        int cantidadEnvios = cad.cantPedidos;
+        int cantidadEnvios = cad.CantPedidos;
         //Monto ganado por cada envio.
         float montoGanado = cantidadEnvios * 500;
 
