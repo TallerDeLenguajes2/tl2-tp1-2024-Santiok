@@ -170,7 +170,6 @@ void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
                     break;
             }
 
-
         }
 
     } while (continuar2);
