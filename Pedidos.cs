@@ -3,19 +3,30 @@ using Cliente;
 using Cadete;
 public class pedidos
 {
-    public int NumeroPedido;
-    public string Observacion;
-    public cliente infoCliente;
-    public  Estado estado;
-    public cadete? cadeteAsignado;
+    private int numeroPedido;
+    private string observacion;
+    private cliente infoCliente;
+    private  Estado estado;
+    private cadete? cadeteAsignado;
+
+    public int NumeroPedido { get => numeroPedido; set => numeroPedido = value;}
+    public string Observacion { get => observacion; set => observacion = value;}
+    public cliente InfoCliente { get => infoCliente; set => infoCliente = value;}
+    public Estado Estado { get => estado; set => estado = value;}
+    public cadete? CadeteAsignado { get => cadeteAsignado; set => cadeteAsignado = value;}
 
     //Metodo constructor.
-    public pedidos(int num, string obs, cliente cli, Estado est/*, cadete cadete*/)
+    public pedidos(int num, string obs, cliente cli, Estado est/*, cadete cadete*/, int numeroPedido = 0, string observacion = null, cliente infoCliente = null, Estado estado = default, cadete? cadeteAsignado = null)
     {
-        this.NumeroPedido = num;
+        this.numeroPedido = num;
         this.Observacion = obs;
         this.infoCliente = cli;
         this.estado = est;
+        this.numeroPedido = numeroPedido;
+        this.observacion = observacion;
+        this.infoCliente = infoCliente;
+        this.estado = estado;
+        this.cadeteAsignado = cadeteAsignado;
         //this.cadeteAsignado = cadete;
     }
 
@@ -32,9 +43,19 @@ public class pedidos
     }
 
     //Muestro los datos del cliente.
-    public void VerDatosCliente(cliente clienteAux)
+    public string VerNombreCliente(cliente clienteAux)
     {
-        Console.WriteLine("\nNombre del cliente: " + clienteAux.Nombre);
-        Console.WriteLine("\nTelefono del cliente: " + clienteAux.Telefono);
+        return clienteAux.Nombre;
     }
+
+    public string VerTelefonoCliente(cliente clienteAux)
+    {
+        return clienteAux.Telefono;
+    }
+
+    public string GetObservacion()
+    {
+        return Observacion;
+    }
+    
 }

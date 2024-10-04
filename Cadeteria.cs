@@ -39,13 +39,15 @@ public class cadeteria
     {
         cadete? cadeteAux = listadoCadetes.FirstOrDefault(p => p.Id == idCadete);
         int cantPedidos = cadeteAux.cantPedidos;
-        return 500 * cantPedidos/*.Where(p => p.estado == Estado.COMPLETADO).Count()*/;
+        return 500 * cantPedidos;
     }
 
+    /*
     public void cargarCadetes(List<cadete> cadetes)
     {
         listadoCadetes = cadetes;
     }
+    */
 
     //Metodo para la asignacion del cadete.
     public void AsignarCadeteAPedido(int idCadete, int idPedido)

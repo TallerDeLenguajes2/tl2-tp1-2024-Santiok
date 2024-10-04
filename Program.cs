@@ -159,7 +159,7 @@ void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
 
                     //Añado al cadete.
                     nuevaCadeteria.AsignarCadeteAPedido(cadeteSeleccionado.Id, numeroP);
-                    newPedido.estado = Estado.COMPLETADO;
+                    newPedido.Estado = Estado.COMPLETADO;
                     cadeteSeleccionado.cantPedidos++;
                     break;
 
@@ -179,7 +179,7 @@ void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
 void AsignarPedidoACadete(List<pedidos> listaPedidos, List<cadete> listaCadetes)
 {
     /*Si el pedido esta en pendiente es porque no fue asignado a ningun cadete o porque el cliente no queria un cadete asignado.*/
-    var pedidosPendientes = listaPedidos.Where(p => p.estado == Estado.PENDIENTE).ToList();
+    var pedidosPendientes = listaPedidos.Where(p => p.Estado == Estado.PENDIENTE).ToList();
     if (!pedidosPendientes.Any())
     {
         Console.WriteLine("No hay pedidos pendientes para asignar.");
@@ -187,7 +187,7 @@ void AsignarPedidoACadete(List<pedidos> listaPedidos, List<cadete> listaCadetes)
     }
 
     Console.WriteLine("Pedidos pendientes:");
-    pedidosPendientes.ForEach(p => Console.WriteLine($"Pedido {p.NumeroPedido} - Estado: {p.estado}"));
+    pedidosPendientes.ForEach(p => Console.WriteLine($"Pedido {p.NumeroPedido} - Estado: {p.Estado}"));
 
     Console.WriteLine("Seleccione un pedido:");
     int numPedido = int.Parse(Console.ReadLine() ?? "0");
@@ -216,7 +216,7 @@ void AsignarPedidoACadete(List<pedidos> listaPedidos, List<cadete> listaCadetes)
 
     var cadeteSeleccionado = listaCadetes[indiceCadete];
     nuevaCadeteria.AsignarCadeteAPedido(cadeteSeleccionado.Id, pedidoSeleccionado.NumeroPedido);
-    pedidoSeleccionado.estado = Estado.COMPLETADO;
+    pedidoSeleccionado.Estado = Estado.COMPLETADO;
     cadeteSeleccionado.cantPedidos++;
     Console.WriteLine($"Pedido {pedidoSeleccionado.NumeroPedido} asignado a {cadeteSeleccionado.Nombre}.");
 }
@@ -225,7 +225,7 @@ void AsignarPedidoACadete(List<pedidos> listaPedidos, List<cadete> listaCadetes)
 void CambiarEstadoPedido(List<pedidos> listaPedidos)
 {
     Console.WriteLine("Pedidos disponibles:");
-    listaPedidos.ForEach(p => Console.WriteLine($"Pedido {p.NumeroPedido} - Estado: {p.estado}"));
+    listaPedidos.ForEach(p => Console.WriteLine($"Pedido {p.NumeroPedido} - Estado: {p.Estado}"));
 
     Console.WriteLine("Seleccione un pedido:");
     int numPedido = int.Parse(Console.ReadLine() ?? "0");
@@ -239,16 +239,16 @@ void CambiarEstadoPedido(List<pedidos> listaPedidos)
 
     Console.WriteLine("Seleccione el nuevo estado (1: PENDIENTE, 2: COMPLETADO):");
     int nuevoEstado = int.Parse(Console.ReadLine() ?? "1");
-    pedidoSeleccionado.estado = (Estado)nuevoEstado;
-    Console.WriteLine($"Estado del pedido {pedidoSeleccionado.NumeroPedido} actualizado a {pedidoSeleccionado.estado}.");
+    pedidoSeleccionado.Estado = (Estado)nuevoEstado;
+    Console.WriteLine($"Estado del pedido {pedidoSeleccionado.NumeroPedido} actualizado a {pedidoSeleccionado.Estado}.");
 }
 
 //Reasigno el pedido a otro cadete.
 void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
 {
     Console.WriteLine("Pedidos asignados:");
-    var pedidosAsignados = listaPedidos.Where(p => p.estado == Estado.COMPLETADO).ToList();
-    pedidosAsignados.ForEach(p => Console.WriteLine($"Pedido {p.NumeroPedido} - Estado: {p.estado}"));
+    var pedidosAsignados = listaPedidos.Where(p => p.Estado == Estado.COMPLETADO).ToList();
+    pedidosAsignados.ForEach(p => Console.WriteLine($"Pedido {p.NumeroPedido} - Estado: {p.Estado}"));
 
     Console.WriteLine("Seleccione un pedido:");
     int numPedido = int.Parse(Console.ReadLine() ?? "0");
@@ -277,7 +277,7 @@ void ReasignarPedido(List<pedidos> listaPedidos, List<cadete> listaCadetes)
 
     var cadeteSeleccionado = listaCadetes[indiceCadete];
 
-    pedidoSeleccionado.cadeteAsignado = cadeteSeleccionado;
+    pedidoSeleccionado.CadeteAsignado = cadeteSeleccionado;
 
     Console.WriteLine($"Pedido {pedidoSeleccionado.NumeroPedido} reasignado a {cadeteSeleccionado.Nombre}.");
 }
