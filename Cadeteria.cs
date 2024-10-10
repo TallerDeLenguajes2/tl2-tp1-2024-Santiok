@@ -43,13 +43,6 @@ public class cadeteria
         return 500 * cantPedidos;
     }
 
-    /*
-    public void cargarCadetes(List<cadete> cadetes)
-    {
-        listadoCadetes = cadetes;
-    }
-    */
-
     //Metodo para la asignacion del cadete.
     public void AsignarCadeteAPedido(int idCadete, int idPedido)
     {

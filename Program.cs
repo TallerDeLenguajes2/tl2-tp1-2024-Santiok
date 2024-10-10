@@ -118,9 +118,11 @@ void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
     bool continuar2 = true;
     Random random = new Random();
     int numeroP = random.Next(100, 10000);
+
     Console.WriteLine("Por favor, ingrese alguna observación:");
     string obs = Console.ReadLine();
     cliente clienteAux = arregloClientes[random.Next(0, arregloClientes.Length)];
+
     //Añado el pedido a la lista de pedidos.
     pedidos newPedido = new pedidos(numeroP, obs, clienteAux, Estado.PENDIENTE);
     listaPedidos.Add(newPedido);
@@ -158,7 +160,7 @@ void DarDeAltaPedido(List<pedidos> listaPedidos, cliente[] arregloClientes)
                     var cadeteSeleccionado = listaCadetes[indiceCadete];
 
                     //Añado al cadete.
-                    nuevaCadeteria.AsignarCadeteAPedido(cadeteSeleccionado.Id, numeroP);
+                    nuevaCadeteria.AsignarCadeteAPedido(cadeteSeleccionado.Id, newPedido.NumeroPedido);
                     newPedido.Estado = Estado.COMPLETADO;
                     cadeteSeleccionado.CantPedidos++;
                     break;

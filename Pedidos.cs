@@ -16,19 +16,24 @@ public class pedidos
     public cadete? CadeteAsignado { get => cadeteAsignado; set => cadeteAsignado = value;}
 
     //Metodo constructor.
-    public pedidos(int num, string obs, cliente cli, Estado est/*, cadete cadete*/, int numeroPedido = 0, string observacion = null, cliente infoCliente = null, Estado estado = default, cadete? cadeteAsignado = null)
+    public pedidos(int num, string obs, cliente cli, Estado est/*,cadete cadete*/)
     {
         this.numeroPedido = num;
         this.Observacion = obs;
         this.infoCliente = cli;
         this.estado = est;
+        
+    }
+
+    /*public pedidos(int numeroPedido = 0, string observacion = null, cliente infoCliente = null, Estado estado = default, cadete? cadeteAsignado = null)
+    {
         this.numeroPedido = numeroPedido;
         this.observacion = observacion;
         this.infoCliente = infoCliente;
         this.estado = estado;
         this.cadeteAsignado = cadeteAsignado;
         //this.cadeteAsignado = cadete;
-    }
+    }*/
 
     //Metodo para agregar cadete.
     public void AgregarCadeteAlPedido(pedidos pedido, cadete cadete)
